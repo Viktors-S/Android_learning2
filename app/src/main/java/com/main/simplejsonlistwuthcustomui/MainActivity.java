@@ -1,8 +1,5 @@
 package com.main.simplejsonlistwuthcustomui;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.ListAdapter;
-
 import android.app.ListActivity;
 import android.app.ProgressDialog;
 import android.os.AsyncTask;
@@ -10,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.SimpleAdapter;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -17,6 +15,8 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+
+import androidx.recyclerview.widget.ListAdapter;
 
 
 public class MainActivity extends ListActivity {
@@ -44,6 +44,9 @@ public class MainActivity extends ListActivity {
 
             }
         });
+
+        new GetPostList().execute();
+
     }
 
     private class GetPostList extends AsyncTask<Void,Void,Void>{
@@ -92,6 +95,15 @@ public class MainActivity extends ListActivity {
             if(progressDialog.isShowing()){
                 progressDialog.dismiss();
             }
+
+            SimpleAdapter listAdapter = new SimpleAdapter(
+                    MainActivity.this,
+                    blogPostList,
+                    R.layout.item_singe_post,
+                    new String[]{GV.TITLE,GV.BODY},
+                    new int[]{R.id.tv_title,R.id.tv_body});
+
+            setListAdapter(listAdapter);
         }
 
 
