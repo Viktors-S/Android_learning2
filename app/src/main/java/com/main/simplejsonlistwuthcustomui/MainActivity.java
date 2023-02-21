@@ -5,6 +5,9 @@ import androidx.recyclerview.widget.ListAdapter;
 
 import android.app.ListActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ListView;
 
 import org.json.JSONArray;
 
@@ -27,5 +30,13 @@ public class MainActivity extends ListActivity {
         setContentView(R.layout.activity_main);
 
         blogPostList = new ArrayList<>();
+        ListView lv = getListView();
+
+        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+
+            }
+        });
     }
 }

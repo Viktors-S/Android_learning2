@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">SimpleJsonListWuthCustomUI</string>
+
+    <string name="top_header">TOP 100 BLOG POSTS</string>
+</resources>

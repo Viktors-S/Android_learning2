@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">SimpleJsonListWuthCustomUI</string>
+
+    <string name="top_header">TOP 100 BLOG POSTS (NE)</string>
+</resources>
