@@ -3,6 +3,7 @@ package com.main.simplejsonlistwuthcustomui;
 import android.app.Application;
 import android.app.ListActivity;
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
@@ -32,6 +33,11 @@ public class MainActivity extends ListActivity {
     private ProgressDialog progressDialog;
 
     ArrayList<HashMap<String,String>> blogPostList;
+    String[] icons = {String.valueOf(R.drawable.baseline_hive_24),String.valueOf(R.drawable.baseline_spa_24),
+            String.valueOf(R.drawable.baseline_skateboarding_24),String.valueOf(R.drawable.baseline_subway_24),
+            String.valueOf(R.drawable.baseline_workspace_premium_24),String.valueOf(R.drawable.baseline_whatshot_24),
+            String.valueOf(R.drawable.baseline_water_24),String.valueOf(R.drawable.baseline_visibility_24),
+            String.valueOf(R.drawable.baseline_verified_24),String.valueOf(R.drawable.baseline_update_24)};
 
 
     @Override
@@ -45,8 +51,14 @@ public class MainActivity extends ListActivity {
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Toast.makeText(getApplicationContext(), blogPostList.get(i).get("userId").toString(), Toast.LENGTH_SHORT).show();
 
+                Intent intent = new Intent(MainActivity.this,BlogActivity.class);
+                intent.putExtra("title",blogPostList.get(i).get("title"));
+                intent.putExtra("body",blogPostList.get(i).get("body"));
+                intent.putExtra("iv_image",blogPostList.get(i).get("iv_image"));
+                intent.putExtra("userId",blogPostList.get(i).get("userId"));
+                intent.putExtra("id",blogPostList.get(i).get("id"));
+                startActivity(intent);
             }
         });
 
@@ -71,11 +83,7 @@ public class MainActivity extends ListActivity {
 
             ServiceHandler sh = new ServiceHandler(url);
             String jsonString = sh.makeServiceCall();
-            String[] icons = {String.valueOf(R.drawable.baseline_hive_24),String.valueOf(R.drawable.baseline_spa_24),
-                    String.valueOf(R.drawable.baseline_skateboarding_24),String.valueOf(R.drawable.baseline_subway_24),
-                    String.valueOf(R.drawable.baseline_workspace_premium_24),String.valueOf(R.drawable.baseline_whatshot_24),
-                    String.valueOf(R.drawable.baseline_water_24),String.valueOf(R.drawable.baseline_visibility_24),
-                    String.valueOf(R.drawable.baseline_verified_24),String.valueOf(R.drawable.baseline_update_24)};
+
             if(jsonString!=null){
                 try {
                     blogposts = new JSONArray(jsonString);

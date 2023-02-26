@@ -16,4 +16,5 @@
 
     <color name="header_background">#2a2633</color>
     <color name="background_c">#1d1924</color>
+    <color name="background_back">#45414C</color>
 </resources>
